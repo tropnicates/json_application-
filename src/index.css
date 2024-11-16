@@ -1,0 +1,31 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* global.css or tailwind.css */
+
+@layer base {
+  html {
+    transition: background-color 0.2s ease;
+  }
+
+  .dark {
+    background-color: #121212; /* Dark mode background */
+    color: white; /* Set text color to white for better contrast */
+  }
+
+  .dark .bg-gray-200 {
+    background-color: #2d2d2d;
+  }
+
+  /* Ensure formTitle and formDescription are visible */
+  .dark .text-gray-800 {
+    color: white; /* Change text color for visibility in dark mode */
+  }
+
+  .dark .bg-white {
+    background-color: #333; /* Adjust background for dark mode */
+  }
+
+  /* Additional custom dark mode styling */
+}
