@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
           id: 'companySize',
           type: 'select',
           label: 'Company Size',
-          required: true,
+          required: false,
           options: [
             { value: '1-50', label: '1-50 employees' },
             { value: '51-200', label: '51-200 employees' },
@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
           id: 'industry',
           type: 'radio',
           label: 'Industry',
-          required: true,
+          required: false,
           options: [
             { value: 'tech', label: 'Technology' },
             { value: 'healthcare', label: 'Healthcare' },
@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
           id: 'timeline',
           type: 'select',
           label: 'Project Timeline',
-          required: true,
+          required: false,
           options: [
             { value: 'immediate', label: 'Immediate (within 1 month)' },
             { value: 'short', label: 'Short-term (1-3 months)' },
