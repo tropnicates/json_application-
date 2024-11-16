@@ -42,13 +42,6 @@ const App: React.FC = () => {
         Toggle Dark Mode
       </button>
 
-      <button
-        onClick={() => exportJson('{"formTitle": "Test Form"}')} // Export your schema here
-        className="p-2 bg-blue-500 text-white rounded mt-2 ml-4"
-      >
-        Export JSON
-      </button>
-
       <HomePage />
     </div>
   );
