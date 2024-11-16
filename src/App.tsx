@@ -1,11 +1,9 @@
-// App.tsx
 import React, { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
-  // Check for dark mode preference in localStorage or default to false
   useEffect(() => {
     const savedMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedMode);

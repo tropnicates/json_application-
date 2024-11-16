@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import JsonEditor from '../components/JsonEditor';
+import FieldRenderer from '../components/FieldRenderer';
 import useFormSchema from '../hooks/useFormSchema';
 
 const HomePage: React.FC = () => {
@@ -158,129 +159,19 @@ const HomePage: React.FC = () => {
       </div>
       <div className="w-full md:w-1/2 h-full p-4 bg-white shadow-md rounded-md overflow-auto">
         <div className="space-y-4">
-          <div>Project Requirements Survey</div>
-          <div>Please fill out this survey about your project needs</div>
-          <label className="block">
-            Full Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="Enter your full name"
-              required
+          <div>{JSON.parse(jsonValue).formTitle}</div>
+          <div>{JSON.parse(jsonValue).formDescription}</div>
+          
+          {JSON.parse(jsonValue).fields.map((field: any) => (
+            <FieldRenderer
+              key={field.id}
+              field={field}
+              formData={formData}
+              onFieldChange={handleChange}
+              onRadioChange={handleRadioChange}
             />
-          </label>
-          <label className="block">
-            Email Address:
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="you@example.com"
-              required
-            />
-          </label>
-          <label className="block">
-            Company Size:
-            <select
-              name="companySize"
-              value={formData.companySize}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-              required
-            >
-              <option value="">Select Company Size</option>
-              <option value="1-50">1-50 employees</option>
-              <option value="51-200">51-200 employees</option>
-              <option value="201-1000">201-1000 employees</option>
-              <option value="1000+">1000+ employees</option>
-            </select>
-          </label>
-          <label className="block">
-            Industry:
-            <div className="space-x-4">
-              <label>
-                <input
-                  type="radio"
-                  name="industry"
-                  value="tech"
-                  onChange={handleRadioChange}
-                  checked={formData.industry === 'tech'}
-                />
-                Technology
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="industry"
-                  value="healthcare"
-                  onChange={handleRadioChange}
-                  checked={formData.industry === 'healthcare'}
-                />
-                Healthcare
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="industry"
-                  value="finance"
-                  onChange={handleRadioChange}
-                  checked={formData.industry === 'finance'}
-                />
-                Finance
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="industry"
-                  value="retail"
-                  onChange={handleRadioChange}
-                  checked={formData.industry === 'retail'}
-                />
-                Retail
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="industry"
-                  value="other"
-                  onChange={handleRadioChange}
-                  checked={formData.industry === 'other'}
-                />
-                Other
-              </label>
-            </div>
-          </label>
-          <label className="block">
-            Project Timeline:
-            <select
-              name="timeline"
-              value={formData.timeline}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-              required
-            >
-              <option value="">Select Timeline</option>
-              <option value="immediate">Immediate (within 1 month)</option>
-              <option value="short">Short-term (1-3 months)</option>
-              <option value="medium">Medium-term (3-6 months)</option>
-              <option value="long">Long-term (6+ months)</option>
-            </select>
-          </label>
-          <label className="block">
-            Additional Comments:
-            <textarea
-              name="comments"
-              value={formData.comments}
-              onChange={handleChange}
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="Any other details you would like to share"
-            />
-          </label>
+          ))}
+          
           <button
             onClick={exportJson}
             className="p-2 bg-blue-500 text-white rounded mt-4"

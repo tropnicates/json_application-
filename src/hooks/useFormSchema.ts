@@ -1,4 +1,3 @@
-// hooks/useFormSchema.ts
 import { useState } from 'react';
 
 const useFormSchema = () => {
