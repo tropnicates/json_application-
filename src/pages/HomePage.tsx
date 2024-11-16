@@ -158,6 +158,8 @@ const HomePage: React.FC = () => {
       </div>
       <div className="w-full md:w-1/2 h-full p-4 bg-white shadow-md rounded-md overflow-auto">
         <div className="space-y-4">
+          <div>Project Requirements Survey</div>
+          <div>Please fill out this survey about your project needs</div>
           <label className="block">
             Full Name:
             <input
