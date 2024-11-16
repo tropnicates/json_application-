@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import JsonEditor from '../components/JsonEditor';
-import FormPreview from '../components/FormPreview';
 import useFormSchema from '../hooks/useFormSchema';
 
 const HomePage: React.FC = () => {
-  const { jsonSchema, updateSchema } = useFormSchema();
+  const { updateSchema } = useFormSchema();  // No need to destructure jsonSchema if not used
   const [jsonValue, setJsonValue] = useState<string>(
     JSON.stringify(
       {
@@ -52,6 +51,11 @@ const HomePage: React.FC = () => {
 
   // Export entered form data as JSON and update the form
   const exportJson = () => {
+    if (!formData.name || !formData.email) {
+      alert('Please fill in both Full Name and Email Address before exporting.');
+      return;
+    }
+
     const dataToExport = {
       name: formData.name,
       email: formData.email,
@@ -67,13 +71,30 @@ const HomePage: React.FC = () => {
     setFormData(dataToExport);
   };
 
+  // Copy JSON schema from the editor
+  const copyJson = () => {
+    navigator.clipboard.writeText(jsonValue)
+      .then(() => {
+        alert('JSON schema copied to clipboard!');
+      })
+      .catch(() => {
+        alert('Failed to copy JSON schema. Please try again.');
+      });
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen p-4 gap-4 bg-gray-50">
       <div className="w-full md:w-1/2 h-full p-4 bg-white shadow-md rounded-md overflow-auto">
         <JsonEditor jsonValue={jsonValue} setJsonValue={setJsonValue} />
+        {/* Copy JSON Button for the left content (JSON editor) */}
+        <button
+          onClick={copyJson}
+          className="p-2 bg-green-500 text-white rounded mt-2"
+        >
+          Copy JSON
+        </button>
       </div>
       <div className="w-full md:w-1/2 h-full p-4 bg-white shadow-md rounded-md overflow-auto">
-        {/* <FormPreview jsonSchema={jsonSchema} /> */}
         <div className="space-y-4">
           <label className="block">
             Full Name:
@@ -84,6 +105,7 @@ const HomePage: React.FC = () => {
               onChange={handleChange}
               className="mt-1 p-2 border rounded w-full"
               placeholder="Enter your full name"
+              required
             />
           </label>
           <label className="block">
@@ -95,6 +117,7 @@ const HomePage: React.FC = () => {
               onChange={handleChange}
               className="mt-1 p-2 border rounded w-full"
               placeholder="you@example.com"
+              required
             />
           </label>
           {/* Export JSON Button */}
