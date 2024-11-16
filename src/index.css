@@ -2,7 +2,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* global.css or tailwind.css */
 
 @layer base {
   html {
@@ -14,18 +13,46 @@
     color: white; /* Set text color to white for better contrast */
   }
 
-  .dark .bg-gray-200 {
-    background-color: #2d2d2d;
+  /* Adjust text color for better contrast in dark mode */
+  .dark .text-gray-800 {
+    color: white; /* Ensure text is visible */
   }
 
-  /* Ensure formTitle and formDescription are visible */
-  .dark .text-gray-800 {
-    color: white; /* Change text color for visibility in dark mode */
+  /* Ensure background colors are adapted to dark mode */
+  .dark .bg-gray-200 {
+    background-color: #2d2d2d; /* Dark background for the form */
   }
 
   .dark .bg-white {
-    background-color: #333; /* Adjust background for dark mode */
+    background-color: #333; /* Adjust background for form fields */
   }
 
-  /* Additional custom dark mode styling */
+  /* Style input fields and text areas for better visibility */
+  .dark input,
+  .dark textarea,
+  .dark select {
+    background-color: #444; /* Darker background for input fields */
+    color: white; /* Light text for readability */
+    border-color: #666; /* Border color for input fields */
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #bbb; /* Placeholder text color */
+  }
+
+  .dark .p-2 {
+    padding: 0.5rem; /* Consistent padding */
+  }
+
+  /* Button styles for dark mode */
+  .dark .bg-blue-500 {
+    background-color: #1d4ed8; /* Blue button for dark mode */
+  }
+  .dark .bg-green-500 {
+    background-color: #10b981; /* Green button for dark mode */
+  }
+  .dark .bg-red-500 {
+    background-color: #ef4444; /* Red button for dark mode */
+  }
 }
